@@ -6,9 +6,6 @@ const boardSize = (base) => {
     return Math.pow(base, 2)
 };
 
-
-const playersNumber = 2;
-
 const ladders = [
     [3, 11],
     [6, 17],
@@ -24,18 +21,18 @@ const snakes = [
 ]
 
 //Funcion que verifica si el movimiento esta en las escaleras o las serpientes
-function checkSnakeOrLadders(move, array, type){
+function checkSnakeOrLadders(move, array, type) {
     for (let index = 0; index < array.length; index++) {
-        if(move  === array[index][0]){
+        if (move === array[index][0]) {
             console.log(`${type}, tu posición es ${array[index][1]}`)
             return {
-                isLadderOrSnake : true,
+                isLadderOrSnake: true,
                 startPoint: array[index][0],
                 endPoint: array[index][1]
             }
-        } else{
-            return{
-                isLadderOrSnake : false
+        } else {
+            return {
+                isLadderOrSnake: false
             }
         }
     }
@@ -48,30 +45,30 @@ const rollDice = () => {
     return roll;
 }
 
-function game(ladders, snakes, boardSize){
+function game(ladders, snakes, boardSize) {
     let lastPostion = 0;
     console.log(`Posición inicial en el tablero, ${lastPostion}`)
     let move = 0;
-   do {
-    move = lastPostion + rollDice();
-    console.log("Posición actualizada en el tablero",move)
+    do {
+        move = lastPostion + rollDice();
+        console.log("Posición actualizada en el tablero", move)
 
-    const checkLadders =  checkSnakeOrLadders(move, ladders, "Subiste una escalera");
-    const checkSnakes = checkSnakeOrLadders(move, snakes, "Bajaste por una serpiente");
+        const checkLadders = checkSnakeOrLadders(move, ladders, "Subiste una escalera");
+        const checkSnakes = checkSnakeOrLadders(move, snakes, "Bajaste por una serpiente");
 
-    if(checkLadders.isLadderOrSnake){
-        lastPostion = checkLadders.endPoint;
-    }else if(checkSnakes.isLadderOrSnake){
-        lastPostion = checkSnakes.endPoint;
-    }else{
-        lastPostion = move;
-    }
+        if (checkLadders.isLadderOrSnake) {
+            lastPostion = checkLadders.endPoint;
+        } else if (checkSnakes.isLadderOrSnake) {
+            lastPostion = checkSnakes.endPoint;
+        } else {
+            lastPostion = move;
+        }
 
-    move === 25 ? console.log("Llegaste a la meta") : console.log("")
+        move === 25 ? console.log("Llegaste a la meta") : console.log("")
 
-   } while (move <= boardSize);
+    } while (move <= boardSize);
 
-   return "FInalizo el juego";
+    return "FInalizo el juego";
 }
 
 
