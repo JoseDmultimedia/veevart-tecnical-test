@@ -42,5 +42,7 @@ const solution = getKnapsack(capacity, currentIndex, elements);
 
 console.log("Valor maximo que se puede llevar" , solution.value);
 console.log("Items incluidos en la mochila", solution.items.map(index => elements[index]));
+//Bonus ---------------------------------------------
+console.log("---------------------Bonus------------------------")
 console.log("Valor restante excluido", (elements.filter((_, index) => !solution.items.includes(index))).reduce((acumulador, subarray) => acumulador + subarray[1], 0));
 console.log("Items excluidos de la mochila", elements.filter((_, index) => !solution.items.includes(index)) )

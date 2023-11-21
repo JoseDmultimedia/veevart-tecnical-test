@@ -63,8 +63,8 @@ function game(ladders, snakes, boardSize) {
         } else {
             lastPostion = move;
         }
-
-        move === 25 ? console.log("Llegaste a la meta") : console.log("")
+        
+        // move === 25 ? console.log("Llegaste a la meta") : console.log("")
 
     } while (move <= boardSize);
 
