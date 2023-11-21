@@ -1,0 +1,14 @@
+{
+  "name": "veevart-tecnical-test",
+  "version": "1.0.0",
+  "description": "Veervart test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Javascript"
+  ],
+  "author": "jose david garcia diosa <garciadiosaj@gmail.com>",
+  "license": "MIT"
+}
