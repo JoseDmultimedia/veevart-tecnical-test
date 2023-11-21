@@ -1,0 +1,108 @@
+//Hay errores en la ejecución del codigo, principalmente en la función de checkSnakeLadder
+
+public class SnakesAndLadders {
+    
+    public class CheckSnakeAndLadder{
+        boolean isLadderOrSnake;
+        Integer startPoint;
+        Integer endPoint;
+        
+        public CheckSnakeAndLadder(boolean isLadderOrSnake, Integer startPoint, Integer endPoint){
+            this.isLadderOrSnake = isLadderOrSnake;
+            this.startPoint = startPoint;
+            this.endPoint = endPoint;
+        }
+        //Probablemente se necesiten getters and setters para poder hacer uso de la data declarada en la clase
+        public boolean getIsLadderOrSnake(){
+            return isLadderOrSnake;
+        }
+        
+        public void setIsLadderOrSnake(boolean isLadderOrSnake){
+            this.isLadderOrSnake = isLadderOrSnake;
+        }
+        
+        public Integer getStartPoint(){
+            return startPoint;
+        }
+        
+        public void setStartPoint(Integer startPoint){
+            this.startPoint = startPoint;
+        }
+        
+        public Integer getEndPoint(){
+            return endPoint;
+        }
+        
+        public void setEndPoint(Integer endPoint){
+            this.endPoint =  endPoint;
+        }
+    }
+
+    public Integer rollDice(){
+        Integer roll = Integer.valueOf(Math.random() * 5) + 1;
+        return roll;
+    }
+    
+    //seria retornar la un objecto de clase, para tener la información del chequeo de las pasadas a traves de los
+    //arrays de serpientes y escaleras
+    public CheckSnakeAndLadder checkLaddersAndSnakes(List<List<Integer>> arrayElements, Integer move){
+        Integer arraySize = arrayElements.size();
+        for (Integer i = 0, j = 0; i < arraySize; i++) {
+            if(move ==  arrayElements[i][0]){
+                System.debug('----- tu posición es ->');
+                System.debug(arrayElements[i][1]);
+                //Aqui se deberia por medio de la clase devolver la estructura de la data para luego ser ultilizada la funcion game
+                CheckSnakeLadder result =  new CheckSnakeLadder(
+                	isLadderOrSnake = true,
+                    startPoint = arrayElements[i][0],
+                    endPoint = arrayElements[i][1]
+                );
+				                
+                return result;
+            }else{
+               //se deberia retornar el objecto con un false en la variable booleana 
+          	     CheckSnakeLadder result =  new CheckSnakeLadder(
+                	isLadderOrSnake = false,
+                    startPoint = 0,
+                    endPoint = 0
+                );
+                return result;
+            }
+		}
+    }
+    //Función principal del juego esta llama a las funciones de dado y de chequeo de serpientes y escaleras
+    //para luego por medio de un ciclo do while hacer cada uno de los turnos del juego.
+    public void mainGame(Integer boardSize, List<List<Integer>> snakes, List<List<Integer>> ladders){
+        Integer lastPosition = 0;
+        System.debug('La posición inicial es ->');
+        System.debug(lastPosition);
+        Integer move = 0;
+        do{
+            
+            move = lastPosition + this.rollDice();
+            
+            CheckSnakeAndLadder snakeCheck = this.checkLaddersAndSnakes(snakes, move);
+            CheckSnakeAndLadder ladderCheck = this.checkLaddersAndSnakes(ladders, move);
+            
+            if(snakeCheck.getIsLadderOrSnake()){
+                lastPosition = snakeCheck.getEndpoint();
+            }else if(ladderCheck.getIsLadderOrSnake()){
+                lastPosition = ladderCheck.getEndPoint();
+            }else{
+                lastPosition = move;
+            }
+            
+        } while(move <= boardSize);
+        
+        System.debug('Finalizo el juego');
+    }
+    
+     public void main(){
+        List<List<Integer>> snakes = new List<List<Integer>>{new List<Integer>{14, 4}, new List<Integer>{19, 8}, new List<Integer>{4,5}, new List<Integer>{5,6}};
+    	List<List<Integer>> ladders = new List<List<Integer>>{new List<Integer>{14, 4}, new List<Integer>{19, 8}, new List<Integer>{4,5}, new List<Integer>{5,6}};
+        Integer boardSize = 25;
+        mainGame(boardSize, snakes, ladders)
+     }
+   
+}
+

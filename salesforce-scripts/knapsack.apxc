@@ -1,0 +1,22 @@
+//Bonus de knapsack no finalizado
+
+public class Knapsack {
+    public static void main() {
+        System.debug('Inicio');
+        List<List<Integer>> elements = new List<List<Integer>>{new List<Integer>{2,3}, new List<Integer>{3,4}, new List<Integer>{4,5}, new List<Integer>{5,6}};
+        Integer capacity = 8;
+        Integer currentIndex =  elements.size() - 1;
+        
+    }
+    
+    public static Integer getKnapsack(Integer capacity, Integer currentIndex, List<List<Integer>> elements){
+        if (capacity == 0 || currentIndex == 0){
+            return 0;
+        }
+        
+        
+        
+        return getKnasack(capacity, currentIndex-1, elements);
+        
+    }
+}
